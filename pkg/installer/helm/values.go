@@ -35,6 +35,9 @@ type Values struct {
 type Module struct {
 	ReplicaCount *int32 `yaml:"replicaCount,omitempty"`
 	Image        *Image `yaml:"image,omitempty"`
+	HostNetwork  bool   `yaml:"hostNetwork,omitempty"`
+	ServiceType  string `yaml:"serviceType,omitempty"`
+	NodePort     int    `yaml:"NodePort,omitempty"`
 }
 
 type Image struct {
