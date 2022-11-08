@@ -1,13 +1,13 @@
-name: Build & Release Image
+name: Build & Release operator Image
 
 env:
   # IMAGE_REPO: ${{ github.repository }}
-  IMAGE_REPO: daocloud
-  REGISTER: ghcr.io
+  IMAGE_REPO: karmada
   IMAGE_ROOT_PATH: docker
   BUILD_PLATFORM: linux/amd64,linux/arm64
-  REGISTER_USER: ${{ github.actor }}
-  REGISTER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+  REGISTER: ${{ secrets.REGISTRY_NAME }}
+  REGISTER_USER: ${{ secrets.REGISTRY_USER }}
+  REGISTER_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
 on:
   workflow_dispatch:
