@@ -67,11 +67,13 @@ func (un *uninstallWorkflow) Uninstall(kmd *installv1alpha1.KarmadaDeployment) e
 		return nil
 	}
 
-	un.helmClient.Uninstall(release.Name, helm.UninstallOptions{
+	if err := un.helmClient.Uninstall(release.Name, helm.UninstallOptions{
 		KeepHistory: false,
 		Namespace:   release.Namespace,
 		Timeout:     DefaultUninstallTimeOut,
-	})
+	}); err != nil {
+		return err
+	}
 
 	// TODO: if the karmada release is not loead, ingore the err.
 	// if err != nil && !strings.Contains(err.Error(), ReleaseNotLoadErrMsg) {

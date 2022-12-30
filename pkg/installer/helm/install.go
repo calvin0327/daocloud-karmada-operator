@@ -246,7 +246,7 @@ func (install *installWorkflow) Deploy(kmd *installv1alpha1.KarmadaDeployment) e
 			DisableValidation: true,
 		})
 
-	if err != nil && !strings.Contains(err.Error(), ReleaseExistErrMsg) {
+	if err != nil {
 		klog.ErrorS(err, "[helm-installer]:failed to install karmada chart", "kmd", kmd.Name)
 		kmd = installv1alpha1.KarmadaDeploymentNotReady(kmd, installv1alpha1.HelmReleaseFailedReason, err.Error())
 		status.SetStatus(install.kmdClient, kmd)
